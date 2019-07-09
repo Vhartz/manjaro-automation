@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import os, time, subprocess
+
+Var_True = True
+while Var_True == True:
+	os.system('pacman-mirrors --country Brazil')
+	os.system('cat /etc/pacman.d/mirrorlist')
+	Time_from_scan = time.strftime ( '%I:%M:%S %p ') 
+	log = subprocess.getoutput('cat /etc/pacman.d/mirrorlist')
+	log_file_serverautomationscan = open('log_scan.txt','a')
+	log_file_serverautomationscan.write("\nTIME TO FINISH SCAN\t" + Time_from_scan + "\n\n" + log )
+	log_file_serverautomationscan.close()
+	time.sleep(36000)
+else:
+    print('Stoped')
