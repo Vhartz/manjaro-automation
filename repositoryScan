@@ -1,16 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os, time, subprocess
+from tqdm import tqdm
+
+#progress
+def progress_Start():
+	with tqdm(total=20, desc='Starting..') as pbar:
+		for i in range(20):
+			time.sleep(0.1)
+			pbar.update(1)
+
+def progress_Creating_LogFille():
+	with tqdm(total=20, desc='Creating Log..') as pbar:
+		for i in range(20):
+			time.sleep(0.1)
+			pbar.update(1)
 
 Var_True = True
 while Var_True == True:
+	print('-------------------------Start--------------------------')
+	progress_Start()
 	os.system('pacman-mirrors --country Brazil')
 	os.system('cat /etc/pacman.d/mirrorlist')
+	#log
 	Time_from_scan = time.strftime ( '%I:%M:%S %p ') 
 	log = subprocess.getoutput('cat /etc/pacman.d/mirrorlist')
-	log_file_serverautomationscan = open('log_scan.txt','a')
-	log_file_serverautomationscan.write("\nTIME TO FINISH SCAN\t" + Time_from_scan + "\n\n" + log )
-	log_file_serverautomationscan.close()
-	time.sleep(36000)
+	progress_Creating_LogFille()
+	log_fille_repositoryScan = open('log_scan.txt','a')
+	log_fille_repositoryScan.write("\nTIME TO FINISH SCAN\t" + Time_from_scan + "\n\n" + log )
+	log_fille_repositoryScan.close()
+	print('-------------------------FINISH-------------------------')	
+	with tqdm(total=36000, desc='AutoScan in') as pbar:
+		for i in range(36000):
+			time.sleep(0.1)
+			pbar.update(1)
 else:
     print('Stoped')
