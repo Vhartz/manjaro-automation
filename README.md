@@ -1,1 +1,1 @@
-# repositoryScan
+#Scripts para automação no manjaro
