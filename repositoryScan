@@ -16,20 +16,18 @@ def progress_Creating_LogFille():
 			time.sleep(0.1)
 			pbar.update(1)
 
-Var_True = True
-while Var_True == True:
-	print('-------------------------Start--------------------------')
+while True:
 	progress_Start()
 	os.system('pacman-mirrors --country Brazil')
 	os.system('cat /etc/pacman.d/mirrorlist')
 	#log
-	Time_from_scan = time.strftime ( '%I:%M:%S %p ') 
+	Time_from_scan = time.strftime ( '%I:%M:%S %p ')
 	log = subprocess.getoutput('cat /etc/pacman.d/mirrorlist')
 	progress_Creating_LogFille()
 	log_fille_repositoryScan = open('log_scan.txt','a')
 	log_fille_repositoryScan.write("\nTIME TO FINISH SCAN\t" + Time_from_scan + "\n\n" + log )
 	log_fille_repositoryScan.close()
-	print('-------------------------FINISH-------------------------')	
+	print('-------------------------FINISH-------------------------')
 	with tqdm(total=36000, desc='AutoScan in') as pbar:
 		for i in range(36000):
 			time.sleep(0.1)
